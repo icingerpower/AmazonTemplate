@@ -87,9 +87,9 @@ void MainWindow::removeSource()
     auto selItems = ui->listWidgetFrom->selectedItems();
     while(selItems.size() > 0)
     {
-        auto lastItem = selItems.last();
-        ui->listWidgetFrom->removeItemWidget(lastItem);
-        delete lastItem;
+        auto lastItem = selItems.takeLast();
+        int row = ui->listWidgetFrom->row(lastItem);
+        delete ui->listWidgetFrom->takeItem(row);
     }
 }
 
@@ -107,6 +107,7 @@ void MainWindow::browseDestination()
         QFileDialog::DontUseNativeDialog);
     if (!filePath.isEmpty())
     {
+        settings.setValue(key, QFileInfo{filePath}.dir().path());
         ui->lineEditTo->setText(filePath);
     }
 }

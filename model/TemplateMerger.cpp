@@ -22,6 +22,7 @@ void TemplateMerger::selectTemplateSheet(QXlsx::Document &doc)
     // English, French (FR/BE), Dutch, Swedish, Polish, Spanish, Italian, Turkish.
     QStringList candidateSheetNames = {
         "Template",
+        "Vorlage",
         "Modèle",
         "Sjabloon",
         "Mall",
